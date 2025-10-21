@@ -20,13 +20,9 @@ A personal and interactive romantic website created with **HTML, CSS, and JavaSc
 
 romantic-website/
 ├── index.html # Main HTML file
-├── styles.css # Styling for the website
-├── app.js # JavaScript for interactive features
 ├── images/ # Folder for all your personal images
 └── music/ # Folder for your romantic song(s)
 
-yaml
-Copy code
 
 ---
 
@@ -34,7 +30,7 @@ Copy code
 
 1. Clone or download the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/romantic-website.git
+git clone https://raludzingana98.github.io/romantic-website/
 Add your own images in the images/ folder.
 
 Add your own music in the music/ folder.
@@ -55,8 +51,7 @@ Your live website URL will look like:
 
 arduino
 Copy code
-https://YOUR_USERNAME.github.io/romantic-website/
-💡 Tips
+https://raludzingana98.github.io/romantic-website/
 Ensure all file names match exactly (case-sensitive).
 
 Use relative paths for images and music (images/photo.jpg, music/song.mp3).
