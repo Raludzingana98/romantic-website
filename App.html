@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Moments — For You 💖</title>
+  <meta name="description" content="A small romantic single-page website to share memories, love notes and surprises." />
+  <style>
+    /* ---------- Reset & base ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,#0f1020 0%, #1a1228 100%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      line-height:1.45;
+    }
+
+    /* ---------- Container ---------- */
+    .site{max-width:1000px;margin:28px auto;padding:24px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border-radius:16px;padding:20px;box-shadow:0 6px 30px rgba(0,0,0,0.6);}
+
+    /* ---------- Header / Hero ---------- */
+    .hero{display:flex;gap:20px;align-items:center}
+    .hero-left{flex:1}
+    .logo{font-weight:700;font-size:20px;letter-spacing:0.6px;color:#ffd7e0}
+    h1{font-size:36px;margin:6px 0}
+    p.lead{color:#ffdfe8;opacity:.95}
+    .cta{margin-top:14px}
+    .btn{display:inline-block;padding:10px 16px;border-radius:999px;background:#ff6b94;color:white;text-decoration:none;font-weight:600;box-shadow:0 6px 20px rgba(255,107,148,0.18);}
+
+    /* ---------- Floating hearts ---------- */
+    .hearts{position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;overflow:hidden}
+    .heart{position:absolute;width:26px;height:26px;background:radial-gradient(circle at 30% 30%, #fff4 0%, #fff0 40%),linear-gradient(45deg,#ff8fb3,#ff5a8e);transform:rotate(-45deg);border-radius:6px 6px 20px 20px;opacity:.9}
+    .heart:before,.heart:after{content:'';position:absolute;background:inherit;border-radius:50%}
+    .heart:before{width:26px;height:26px;top:-13px;left:0}
+    .heart:after{width:26px;height:26px;left:13px;top:0}
+
+    /* ---------- Sections ---------- */
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+    .panel{padding:16px;border-radius:12px}
+
+    /* ---------- Gallery ---------- */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .gallery img{width:100%;height:100px;object-fit:cover;border-radius:8px}
+
+    /* ---------- Love letter modal ---------- */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .25s}
+    .modal.open{opacity:1;pointer-events:auto}
+    .modal-card{width:90%;max-width:560px;background:linear-gradient(180deg,#fff 6%, #ffeef7 100%);color:#211; padding:22px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+    .close{background:#ff6b94;color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+
+    /* ---------- Countdown & controls ---------- */
+    .count{font-weight:700;font-size:18px;margin-top:10px}
+    .music-row{display:flex;gap:8px;align-items:center}
+
+    /* ---------- Footer ---------- */
+    footer{opacity:.85;margin-top:18px;font-size:13px;text-align:center}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr;}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+      h1{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" aria-hidden="true"></div>
+
+  <main class="site">
+    <div class="card hero">
+      <div class="hero-left">
+        <div class="logo">Moments • For You</div>
+        <h1>To my love — a tiny place where our memories glow ✨</h1>
+        <p class="lead">A simple, sweet webpage you can personalize: add photos, a love letter, a song, and a countdown to our next special day.</p>
+        <div class="cta">
+          <a class="btn" id="open-letter">Open Love Letter</a>
+          <a class="btn" id="scroll-gallery" style="margin-left:10px;background:#ffd1e6;color:#3a0526">See Gallery</a>
+        </div>
+      </div>
+      <div class="hero-right" style="width:280px;text-align:center">
+        <img src="images/1000007452.jpg" alt="couple" style="width:100%;border-radius:12px;display:block;box-shadow:0 10px 30px rgba(0,0,0,0.6)">
+        <div style="margin-top:10px;font-size:13px;color:#ffdfe8">You + Me • Always</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="panel card" aria-labelledby="mem">
+        <h2 id="mem">Our Memories</h2>
+        <p style="margin-top:8px">A small gallery — click any photo to open a larger view.</p>
+        <div class="gallery" id="gallery">
+          <img src="images/1000000196.jpg" alt="memory 1">
+          <img src="images/1000007271.jpg" alt="memory 2">
+          <img src="images/1000007272.jpg" alt="memory 3">
+          <img src="images/1000007452.jpg" alt="memory 4">
+          <img src="images/1000007467.jpg" alt="memory 5">
+          <img src="images/1000013084.jpg" alt="memory 6">
+          <img src="images/1000034284.jpg" alt="memory 7">
+          <img src="images/IMG-20250422-WA0171.jpg" alt="memory 8">
+          <img src="images/IMG-20250422-WA0169.jpg" alt="memory 9">
+          <img src="images/IMG-20250529-WA0100.jpg" alt="memory 10">
+          <img src="images/IMG-20250529-WA0101.jpg" alt="memory 11">
+
+        </div>
+      </section>
+
+      <aside class="panel card" aria-labelledby="extras">
+        <h3 id="extras">Extras</h3>
+
+        <div style="margin-top:12px">
+          <div class="count">Countdown to our anniversary:</div>
+          <div id="countdown" aria-live="polite" style="margin-top:8px;font-size:20px">— days — : — : —</div>
+        </div>
+
+        <div style="margin-top:14px">
+          <div class="music-row">
+            <button id="play-btn" class="btn" aria-pressed="false">Play Song</button>
+            <button id="pause-btn" class="btn" style="background:#ffd1e6;color:#3a0526">Pause</button>
+          </div>
+          <audio id="audio" src="" preload="none"></audio>
+          <div style="margin-top:8px;font-size:13px;opacity:.9">Tip: replace the audio src in the code with a link to your favorite track (mp3).</div>
+        </div>
+
+        <div style="margin-top:14px">
+          <button id="confetti" class="btn" style="background:#fff4;color:#8a1d3b">Make It Rain Hearts</button>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer>
+      <small>Made with ❤️ — Customize images, text, and song in the code. Press the heart button for a little magic.</small>
+    </footer>
+  </main>
+
+  <!-- Love letter modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong>A Letter to You</strong>
+        <button class="close" id="close-modal">Close</button>
+      </div>
+      <p style="margin-top:12px">My dearest —</p>
+      <p style="margin-top:8px">Every day with you feels like a small miracle. I made this little space to remind you of how much you mean to me. Thank you for your laughter, the late-night talks, and the quiet comfort of your hand in mine. — Love always.</p>
+      <div style="margin-top:12px;text-align:right">
+        <button id="surprise" class="btn">Open a Surprise</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- image lightbox (simple) -->
+  <div id="lightbox" class="modal" aria-hidden="true"><div class="modal-card" style="max-width:900px;text-align:center"><img id="lightbox-img" src="" alt="" style="max-width:100%;height:auto;border-radius:10px"><div style="margin-top:12px"><button class="close" id="close-lightbox">Close</button></div></div></div>
+
+  <script>
+    // ---------- Config: edit these to personalize ----------
+    const ANNIVERSARY = '2026-05-15T00:00:00'; // YYYY-MM-DDTHH:MM:SS
+    const AUDIO_SRC = 'music/My Number One (Feat. Dj Fumza) Xigaza  Xitsonga  Prince Of Gaza.mp3';// put an mp3 URL here (CORS-friendly) or leave blank
+
+    // ---------- Utils ----------
+    function qs(sel){return document.querySelector(sel)}
+    function qsa(sel){return [...document.querySelectorAll(sel)]}
+
+    // ---------- Hearts animation ----------
+    const heartsContainer = document.querySelector('.hearts');
+    function spawnHeart(){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      const left = Math.random()*100;
+      h.style.left = left + '%';
+      h.style.top = (10 + Math.random()*60) + '%';
+      const size = 20 + Math.random()*36;
+      h.style.width = size+'px'; h.style.height = size+'px';
+      heartsContainer.appendChild(h);
+      const dur = 4000 + Math.random()*3000;
+      h.animate([
+        {transform:'translateY(0) scale(1)', opacity:1},
+        {transform:'translateY(-220px) scale(.7)', opacity:0}
+      ],{duration:dur, easing:'ease-out'}).onfinish = ()=>h.remove();
+    }
+    // gentle loop
+    let heartTimer = setInterval(()=>{ if(Math.random()>0.6) spawnHeart() }, 700);
+
+    // ---------- Modal logic ----------
+    const modal = qs('#modal');
+    qs('#open-letter').addEventListener('click', ()=>{ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); });
+    qs('#close-modal').addEventListener('click', ()=>{ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); });
+
+    // surprise button -> toggle bigger heart shower
+    qs('#surprise').addEventListener('click', ()=>{
+      for(let i=0;i<40;i++) setTimeout(spawnHeart, i*60);
+    });
+
+    // ---------- Lightbox for gallery ----------
+    const lightbox = qs('#lightbox');
+    const lbImg = qs('#lightbox-img');
+    qsa('#gallery img').forEach(img=>{
+      img.style.cursor='pointer';
+      img.addEventListener('click', ()=>{
+        lbImg.src = img.src;
+        lightbox.classList.add('open'); lightbox.setAttribute('aria-hidden','false');
+      })
+    })
+    qs('#close-lightbox').addEventListener('click', ()=>{ lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); });
+
+    // ---------- Countdown ----------
+    function updateCountdown(){
+      const now = new Date();
+      const then = new Date(ANNIVERSARY);
+      const diff = then - now;
+      if(isNaN(then)) { qs('#countdown').textContent = 'Edit ANNIVERSARY in the code.'; return }
+      if(diff<=0){ qs('#countdown').textContent = 'Happy Anniversary!'; return }
+      const days = Math.floor(diff/ (1000*60*60*24));
+      const hours = Math.floor(diff/(1000*60*60) % 24);
+      const mins = Math.floor(diff/(1000*60) % 60);
+      const secs = Math.floor(diff/1000 % 60);
+      qs('#countdown').textContent = `${days}d : ${String(hours).padStart(2,'0')}h : ${String(mins).padStart(2,'0')}m : ${String(secs).padStart(2,'0')}s`;
+    }
+    updateCountdown(); setInterval(updateCountdown,1000);
+
+    // ---------- Simple music player ----------
+    const audio = qs('#audio'); audio.src = AUDIO_SRC;
+    qs('#play-btn').addEventListener('click', ()=>{ if(!audio.src) return alert('Set AUDIO_SRC in the code to an mp3 url.'); audio.play(); qs('#play-btn').setAttribute('aria-pressed','true') });
+    qs('#pause-btn').addEventListener('click', ()=>{ audio.pause(); qs('#play-btn').setAttribute('aria-pressed','false') });
+
+    // ---------- confetti / big heart shower ----------
+    qs('#confetti').addEventListener('click', ()=>{
+      for(let i=0;i<60;i++) setTimeout(spawnHeart, i*30);
+    });
+
+    // ---------- small niceties ----------
+    qs('#scroll-gallery').addEventListener('click', ()=>{ document.getElementById('gallery').scrollIntoView({behavior:'smooth'}); });
+
+    // keyboard escape closes modal/lightbox
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape'){ modal.classList.remove('open'); lightbox.classList.remove('open'); }
+    });
+
+    // Accessibility hint: make interactive elements keyboard focusable
+    [...document.querySelectorAll('button, a')].forEach(el=>el.setAttribute('tabindex','0'));
+  </script>
+</body>
+</html>
