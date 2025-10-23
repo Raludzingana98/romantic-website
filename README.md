@@ -19,9 +19,9 @@ A personal and interactive romantic website created with **HTML, CSS, and JavaSc
 ## 🗂 Folder Structure
 
 romantic-website/
-├── index.html # Main HTML file
-├── images/ # Folder for all your personal images
-└── music/ # Folder for your romantic song(s)
+- index.html # Main HTML file
+- images/ # Folder for all your personal images
+- music/ # Folder for your romantic song(s)
 
 
 ---
@@ -61,14 +61,7 @@ Customize text, captions, and the love letter to make it personal.
 ❤️ License
 This project is for personal use and gifts. Feel free to modify it for your own romantic surprises.
 
-yaml
-Copy code
 
----
-
-If you want, I can also **add a cute visual screenshot section** in the README showing your website layout—it makes it look extra polished for GitHub.  
-
-Do you want me to do that?
 
 
 
