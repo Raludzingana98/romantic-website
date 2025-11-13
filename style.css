@@ -1,0 +1,290 @@
+/* 🌸 BASE */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+  background: linear-gradient(135deg, #ff9ae9, #d4c2bd);
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-attachment: fixed;
+}
+.site {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* 🌸 HERO */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+}
+.logo {
+  font-weight: 700;
+  font-size: 24px;
+  color: #ffadc6;
+  text-shadow: 0 0 6px rgba(255, 150, 180, 0.8);
+}
+.hero-img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+.caption {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #ffdfe8;
+}
+.btn-group {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* 🌸 BUTTONS */
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: #ff6b94;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 107, 148, 0.25);
+  transition: 0.3s;
+}
+.btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 15px #ff91b4;
+}
+.btn.alt {
+  background: #ffd1e6;
+  color: #3a0526;
+}
+.btn.special {
+  background: #fff4;
+  color: #8a1d3b;
+}
+
+/* 🌸 CARD */
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.01);
+}
+
+/* 🌸 MUSIC */
+.music-card {
+  text-align: center;
+}
+.song-title {
+  margin: 10px 0;
+  color: #ffdbe9;
+  animation: fadeIn 0.6s ease;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🌸 GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.gallery img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  filter: brightness(0.9);
+}
+.gallery img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* 🌸 HEARTS */
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+.heart {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(45deg, #ff8fb3, #ff5a8e);
+  transform: rotate(-45deg);
+  border-radius: 6px 6px 20px 20px;
+  opacity: 0.9;
+}
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+.heart:before {
+  width: 26px;
+  height: 26px;
+  top: -13px;
+  left: 0;
+}
+.heart:after {
+  width: 26px;
+  height: 26px;
+  left: 13px;
+  top: 0;
+}
+
+/* 🌸 MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-card {
+  width: 90%;
+  max-width: 580px;
+  background: linear-gradient(180deg, #fff, #ffeef7);
+  color: #211;
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.5s ease;
+}
+
+/* 🌸 GAME */
+.memory-game {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+  justify-items: center;
+  perspective: 800px;
+}
+.card-game {
+  width: 80px;
+  height: 80px;
+  background: #ff9ab6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease, background 0.3s;
+  color: transparent;
+}
+.card-game.flipped {
+  background: #ffe6ef;
+  color: #ff5f8d;
+  transform: rotateY(180deg);
+}
+.card-game.matched {
+  background: #ffb3cc;
+  color: #fff;
+  transform: scale(1.1);
+  cursor: default;
+  box-shadow: 0 0 15px #ff91b4;
+}
+
+/* 🌸 FOOTER */
+footer {
+  text-align: center;
+  opacity: 0.8;
+  margin-top: 32px;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+
+/* 🌸 RESPONSIVE */
+@media (max-width: 800px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  h1 {
+    font-size: 28px;
+  }
+}
+
+/* 🌸 LOVE QUIZ */
+.quiz-container {
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+.quiz-container input,
+.quiz-container select {
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  background: rgba(255,255,255,0.15);
+  color: #05124e;
+}
+.quiz-container label {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #832144;
+}
+.quiz-container button {
+  width: 100%;
+  margin-top: 10px;
+}
+.result {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #99185d;
+  display: none;
+}

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Moments 💖</title>
+  <meta name="description" content="A digital love capsule — filled with memories, music, games and a heartfelt letter." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="hearts" aria-hidden="true"></div>
+
+  <main class="site">
+    <section class="card hero">
+      <div class="hero-left">
+        <div class="logo">Our Moments 💞</div>
+        <h1>For you — where love, memories, and laughter live forever ✨</h1>
+        <p class="lead">
+          Scroll through our memories, read my love letter, play our little game, and listen to our songs — every heartbeat of us in one place.
+        </p>
+        <div class="btn-group">
+          <button class="btn" id="open-letter">Open Love Letter</button>
+          <button class="btn alt" id="scroll-gallery">See Gallery</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="images/1000007452.jpg" alt="A photo of us together" class="hero-img" />
+        <div class="caption">You + Me • Always</div>
+      </div>
+    </section>
+
+    <!-- 🌸 Timers -->
+    <section class="card" id="stats">
+      <div>Countdown to our anniversary: <span id="countdown"></span></div>
+      <div>Days since we met: <span id="countup"></span></div>
+      <div>Days until we see each other again 💞: <span id="meetup"></span></div>
+    </section>
+
+    <!-- 🌸 Gallery -->
+    <section class="card" id="gallery-section">
+      <h2>Our Gallery</h2>
+      <p>Click any photo to relive the moment 💫</p>
+      <div class="gallery" id="gallery">
+        <img src="images/1000000196.jpg" alt="Memory 1">
+        <img src="images/1000007271.jpg" alt="Memory 2">
+        <img src="images/1000007272.jpg" alt="Memory 3">
+        <img src="images/1000007452.jpg" alt="Memory 4">
+        <img src="images/1000007467.jpg" alt="Memory 5">
+        <img src="images/1000013084.jpg" alt="Memory 6">
+        <img src="images/1000034284.jpg" alt="Memory 7">
+        <img src="images/IMG-20250422-WA0171.jpg" alt="Memory 8">
+        <img src="images/IMG-20250529-WA0101.jpg" alt="Memory 9">
+      </div>
+    </section>
+
+    <!-- 🌸 Memory Game -->
+    <section class="card">
+      <h2>Our Little Game 🎮</h2>
+      <p>Match the hearts — each pair holds a memory we’ve shared 💕</p>
+      <div class="memory-game" id="game"></div>
+      <div id="game-status" style="margin-top:12px;text-align:center;font-weight:600;color:#ffdce8"></div>
+      <button class="btn" id="reset-game" style="margin-top:14px">Restart Game</button>
+
+      <hr style="margin:28px 0;border:none;border-top:1px solid rgba(255,255,255,0.1)" />
+
+      <h2>💖 Love Compatibility Quiz 💖</h2>
+      <p>Just for fun — let’s see how perfect our hearts match 💞</p>
+
+      <div class="quiz-container">
+        <input type="text" id="name1" placeholder="Your Name">
+        <input type="text" id="name2" placeholder="Crush's Name">
+
+        <label>Favorite Date?</label>
+        <select id="q1">
+          <option value="dinner">Candlelight Dinner</option>
+          <option value="movie">Movie Night</option>
+          <option value="walk">Evening Walk</option>
+          <option value="game">Game Night</option>
+        </select>
+
+        <label>Love Language?</label>
+        <select id="q2">
+          <option value="words">Words of Affirmation</option>
+          <option value="touch">Physical Touch</option>
+          <option value="time">Quality Time</option>
+          <option value="gifts">Gifts</option>
+        </select>
+
+        <label>Ideal Gift?</label>
+        <select id="q3">
+          <option value="flowers">Flowers</option>
+          <option value="chocolates">Chocolates</option>
+          <option value="handwritten">Handwritten Letter</option>
+          <option value="trip">Weekend Trip</option>
+        </select>
+
+        <button class="btn" id="calculate">💘 Calculate Love 💘</button>
+        <div class="result" id="result"></div>
+      </div>
+    </section>
+
+    <section class="card" id="love-messages">
+      <h2>Reasons I Love You 💖</h2>
+      <p id="love-text" style="margin-top:10px;font-size:1.1em;color:#ffeef7">Click below to see why you’re amazing...</p>
+      <button class="btn" id="new-message" style="margin-top:12px">💘 Tell Me More</button>
+    </section>
+
+    <section class="card">
+      <h2>Quote of the Day 🌹</h2>
+      <p id="quote-text" style="margin-top:10px;color:#ffeef3"></p>
+    </section>
+
+
+    <!-- 🌸 Music -->
+    <section class="card music-card">
+      <h2>Music & Magic 🎵</h2>
+      <p id="song-title" class="song-title">Song: —</p>
+      <div class="btn-group">
+        <button class="btn" id="prev">⏮ Prev</button>
+        <button class="btn" id="play">▶ Play</button>
+        <button class="btn" id="pause">⏸ Pause</button>
+        <button class="btn" id="next">⏭ Next</button>
+        <button class="btn special" id="confetti">💖 Rain Hearts</button>
+      </div>
+      <audio id="music" preload="auto"></audio>
+    </section>
+
+    <footer><small>Made with ❤️ — A forever keepsake of our love by Shumani Raludzingana for Miyelani Maluleke.</small></footer>
+  </main>
+  
+
+  <!-- 💌 Love Letter Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="letter-title">
+    <div class="modal-card">
+      <header class="modal-header">
+        <strong id="letter-title">A Letter to You 💌</strong>
+        <button class="btn close" id="close-modal">Close</button>
+      </header>
+      <div class="modal-body">
+        <p>My dearest —</p>
+        <p>Every moment with you feels like poetry. This page is my little gift — filled with the whispers of our love, laughter, and shared dreams. You're my peace, my adventure, my forever.</p>
+        <p>Forever yours 💕</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 💫 Lightbox -->
+  <div id="lightbox" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-card lightbox-card">
+      <img id="lightbox-img" src="" alt="Expanded memory" class="lightbox-img">
+      <div><button class="btn" id="close-lightbox">Close</button></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
